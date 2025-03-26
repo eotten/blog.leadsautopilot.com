@@ -1,0 +1,95 @@
+<header 
+    class="fixed top-0 left-0 right-0 transition-all duration-300 ease-in-out w-full z-50 text-white"
+    x-data="{ 
+        mobileMenuOpen: false, 
+        categoriesDropdownOpen: false,
+        scrolled: false
+    }"
+    x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 50 })"
+    :class="scrolled ? 'bg-gray-900/85 backdrop-blur-sm shadow-lg' : 'bg-gray-900 shadow-md'"
+>
+    <div class="container mx-auto px-4 py-3">
+        <div class="flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <a href="{{ '/' | relative_url }}" class="flex items-center" aria-label="LeadsAutopilot Blog">
+                    <span class="text-lg font-medium text-white">LeadsAutopilot <span class="text-blue-400 font-semibold">Blog</span></span>
+                </a>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="{{ '/' | relative_url }}" class="text-gray-300 hover:text-white transition-colors duration-200">Home</a>
+                
+                <!-- Categories Dropdown -->
+                <div class="relative" x-data="{ open: false }">
+                    <button @click="open = !open" @click.away="open = false" class="flex items-center text-gray-300 hover:text-white focus:outline-none transition-colors duration-200">
+                        <span>Categories</span>
+                        <svg :class="{'transform rotate-180': open}" class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    
+                    <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-10" style="display: none;">
+                        <!-- Categories -->
+                        <a href="{{ '/categories/lead-generation' | relative_url }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Lead Generation</a>
+                        <a href="{{ '/categories/b2b-marketing' | relative_url }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">B2B Marketing</a>
+                        <a href="{{ '/categories/marketing-automation' | relative_url }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Marketing Automation</a>
+                        <a href="{{ '/categories/sales-strategy' | relative_url }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sales Strategy</a>
+                        <a href="{{ '/categories/' | relative_url }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-medium">All Categories</a>
+                    </div>
+                </div>
+                
+                <a href="{{ '/about/' | relative_url }}" class="text-gray-300 hover:text-white transition-colors duration-200">About</a>
+                <a href="https://www.leadsautopilot.com/#pricing" class="text-gray-300 hover:text-white transition-colors duration-200">Pricing</a>
+                <a href="https://www.leadsautopilot.com/#faq" class="text-gray-300 hover:text-white transition-colors duration-200">FAQ</a>
+                <div class="flex items-center space-x-3">
+                    <a href="https://app.leadsautopilot.com/login" class="px-4 py-2 border border-gray-300 text-white rounded-md hover:bg-gray-700 transition-colors duration-200">Log In</a>
+                    <a href="https://app.leadsautopilot.com/join" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-200">Start My Free Trial</a>
+                </div>
+            </nav>
+            
+            <!-- Mobile menu button -->
+            <div class="md:hidden flex items-center">
+                <button @click="mobileMenuOpen = !mobileMenuOpen" type="button" class="text-gray-300 hover:text-white focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path x-show="mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div x-show="mobileMenuOpen" class="md:hidden mt-3 pb-3" style="display: none;">
+            <div class="flex flex-col space-y-2">
+                <a href="{{ '/' | relative_url }}" class="text-gray-300 hover:text-white transition-colors duration-200 py-2">Home</a>
+                
+                <!-- Mobile Categories Dropdown -->
+                <div>
+                    <button @click="categoriesDropdownOpen = !categoriesDropdownOpen" class="flex items-center w-full text-left text-gray-300 hover:text-white transition-colors duration-200 py-2">
+                        <span>Categories</span>
+                        <svg :class="{'transform rotate-180': categoriesDropdownOpen}" class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div x-show="categoriesDropdownOpen" class="pl-4 mt-2 space-y-2" style="display: none;">
+                        <a href="{{ '/categories/lead-generation' | relative_url }}" class="block text-gray-300 hover:text-white transition-colors duration-200 py-1">Lead Generation</a>
+                        <a href="{{ '/categories/b2b-marketing' | relative_url }}" class="block text-gray-300 hover:text-white transition-colors duration-200 py-1">B2B Marketing</a>
+                        <a href="{{ '/categories/marketing-automation' | relative_url }}" class="block text-gray-300 hover:text-white transition-colors duration-200 py-1">Marketing Automation</a>
+                        <a href="{{ '/categories/sales-strategy' | relative_url }}" class="block text-gray-300 hover:text-white transition-colors duration-200 py-1">Sales Strategy</a>
+                        <a href="{{ '/categories/' | relative_url }}" class="block text-gray-300 hover:text-white transition-colors duration-200 py-1 font-medium">All Categories</a>
+                    </div>
+                </div>
+                
+                <a href="{{ '/about/' | relative_url }}" class="text-gray-300 hover:text-white transition-colors duration-200 py-2">About</a>
+                <a href="{{ '/resources/' | relative_url }}" class="text-gray-300 hover:text-white transition-colors duration-200 py-2">Resources</a>
+                <a href="https://app.leadsautopilot.com/login" class="px-4 py-2 border border-gray-300 text-white rounded-md hover:bg-gray-700 transition-colors duration-200 inline-block mt-2">Log In</a>
+                <a href="https://app.leadsautopilot.com/join" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-200 inline-block mt-2">Start My Free Trial</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Alpine.js -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> 

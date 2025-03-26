@@ -1,0 +1,47 @@
+<!-- SEO Meta Tags -->
+<meta name="description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+<meta name="author" content="LeadsAutopilot">
+<meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% else %}B2B marketing, lead generation, sales automation, {{ page.category }}{% endif %}">
+
+<!-- Open Graph Meta Tags (for Facebook, LinkedIn) -->
+<meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+<meta property="og:description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+{% if page.featured_image %}
+<meta property="og:image" content="{{ page.featured_image | absolute_url }}">
+{% endif %}
+<meta property="og:site_name" content="{{ site.title }}">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+<meta name="twitter:description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+{% if page.featured_image %}
+<meta name="twitter:image" content="{{ page.featured_image | absolute_url }}">
+{% endif %}
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+
+<!-- Schema.org markup for Google -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "headline": "{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}",
+  "description": "{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}",
+  "url": "{{ page.url | absolute_url }}",
+  {% if page.featured_image %}
+  "image": "{{ page.featured_image | absolute_url }}",
+  {% endif %}
+  "publisher": {
+    "@type": "Organization",
+    "name": "LeadsAutopilot",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ '/assets/images/leadsautopilot-logo.png' | absolute_url }}"
+    }
+  }
+}
+</script> 

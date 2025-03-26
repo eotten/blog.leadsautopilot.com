@@ -1,0 +1,29 @@
+title: LeadsAutopilot Blog
+description: B2B Client Acquisition Hub
+baseurl: ""
+url: "https://blog.leadsautopilot.com"
+
+# Build settings
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Theme settings
+theme_color: blue
+font_family: Inter, sans-serif
+
+# Collections
+collections:
+  posts:
+    output: true
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "LeadsAutopilot Team" 

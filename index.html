@@ -1,0 +1,44 @@
+---
+layout: default
+title: LeadsAutopilot Blog - B2B Client Acquisition Hub
+---
+
+<div class="container mx-auto px-4 py-12">
+  <div class="text-center mb-16">
+    <h1 class="text-4xl md:text-5xl font-bold text-blue-700 mb-4">LeadsAutopilot Blog</h1>
+    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Your ultimate resource for B2B client acquisition strategies, lead generation, and business growth insights.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {% for post in site.posts limit:6 %}
+    <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
+      <a href="{{ post.url | relative_url }}">
+        {% if post.image %}
+        <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" class="w-full h-48 object-cover">
+        {% else %}
+        <div class="w-full h-48 bg-blue-100 flex items-center justify-center">
+          <span class="text-blue-500 text-lg font-medium">LeadsAutopilot</span>
+        </div>
+        {% endif %}
+        <div class="p-6">
+          <h2 class="text-xl font-semibold text-gray-800 mb-2">{{ post.title }}</h2>
+          <p class="text-gray-600 mb-4">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+          <div class="flex items-center text-sm text-gray-500">
+            <span>{{ post.date | date: "%B %d, %Y" }}</span>
+            <span class="mx-2">•</span>
+            <span>{{ post.author }}</span>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% if site.posts.size > 6 %}
+  <div class="text-center mt-12">
+    <a href="/blog/" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition-colors duration-300">
+      View All Articles
+    </a>
+  </div>
+  {% endif %}
+</div> 

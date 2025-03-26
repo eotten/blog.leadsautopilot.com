@@ -1,0 +1,6 @@
+# robots.txt for blog.leadsautopilot.com
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://blog.leadsautopilot.com/sitemap.xml 

@@ -1,0 +1,82 @@
+---
+layout: default
+title: All Categories | LeadsAutopilot Blog
+description: "Browse all B2B marketing, lead generation, and sales automation topics on the LeadsAutopilot Blog. Find expert insights and strategies to grow your business."
+keywords: "B2B marketing categories, lead generation topics, sales automation resources, B2B client acquisition"
+permalink: /categories/
+featured_image: "/assets/images/categories-featured.jpg"
+---
+
+<div class="bg-blue-50 py-12">
+  <div class="container mx-auto px-4">
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-montserrat">All Categories</h1>
+    <p class="text-lg text-gray-600 max-w-3xl">Browse our collection of B2B marketing, lead generation, and client acquisition resources organized by topic.</p>
+  </div>
+</div>
+
+<div class="container mx-auto px-4 py-12">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% assign sorted_categories = site.categories | sort %}
+    
+    {% for category in sorted_categories %}
+      {% assign category_name = category | first %}
+      {% assign posts = category | last %}
+      
+      <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
+        <div class="bg-blue-600 px-6 py-4">
+          <h2 class="text-xl font-semibold text-white font-montserrat">{{ category_name }}</h2>
+          <p class="text-blue-100">{{ posts.size }} post{% if posts.size != 1 %}s{% endif %}</p>
+        </div>
+        
+        <ul class="divide-y divide-gray-200">
+          {% for post in posts limit:3 %}
+            <li>
+              <a href="{{ post.url | relative_url }}" class="block px-6 py-4 hover:bg-blue-50 transition-colors">
+                <h3 class="text-lg font-medium text-gray-800">{{ post.title }}</h3>
+                <div class="flex items-center text-sm text-gray-500 mt-1">
+                  <span>{{ post.date | date: "%B %d, %Y" }}</span>
+                </div>
+              </a>
+            </li>
+          {% endfor %}
+          
+          {% if posts.size > 3 %}
+            <li class="px-6 py-3 bg-gray-50 text-center">
+              <a href="{{ '/categories/' | append: category_name | slugify | relative_url }}" class="text-blue-600 hover:text-blue-800 font-medium">
+                View all {{ posts.size }} posts
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    {% endfor %}
+  </div>
+  
+  <div class="mt-16 bg-white rounded-lg shadow-sm p-8">
+    <div class="max-w-md mx-auto">
+      {% include email-signup.html %}
+    </div>
+  </div>
+</div>
+
+<!-- Schema.org markup for Google -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ '/' | absolute_url }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "All Categories",
+      "item": "{{ '/categories/' | absolute_url }}"
+    }
+  ]
+}
+</script> 
