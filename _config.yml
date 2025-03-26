@@ -5,7 +5,7 @@ url: "https://blog.leadsautopilot.com"
 
 # Build settings
 markdown: kramdown
-permalink: /:year/:month/:day/:title/
+permalink: /:title/
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
